@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/an4cr0n/backend.git"
+    "url": "git+https://github.com/ByPassaRe/Pick-a-park-api.git"
   },
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/an4cr0n/backend/issues"
+    "url": "https://github.com/ByPassaRe/Pick-a-park-api/issues"
   },
-  "homepage": "https://github.com/an4cr0n/backend#readme",
+  "homepage": "https://github.com/ByPassaRe/Pick-a-park-api#readme",
   "dependencies": {
     "express": "^4.17.1"
   },

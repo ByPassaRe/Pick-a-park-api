@@ -32,13 +32,13 @@ describe('Parking spot route /', () => {
         });
 
         it('should return not implemented on GET on a specific /id', async done => {
-            const response = await request(app).get(resourcePath + 'presence/1/');
+            const response = await request(app).get(resourcePath + '1/presence');
             expect(response.status).toBe(501);
             done();
         });
 
         it('should return not implemented on PUT on a specific /id', async done => {
-            const response = await request(app).put(resourcePath + 'presence/1/');
+            const response = await request(app).put(resourcePath + '1/presence');
             expect(response.status).toBe(501);
             done();
         });

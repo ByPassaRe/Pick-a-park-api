@@ -19,10 +19,10 @@ router.get('/presence', (req, res) => {
     return res.sendStatus(501);
 });
 
-router.get('/presence/:id', (req, res) => {
+router.get('/:id/presence', (req, res) => {
     return res.sendStatus(501);
 });
 
-router.put('/presence/:id', (req, res) => {
+router.put('/:id/presence', (req, res) => {
     return res.sendStatus(501);
 });

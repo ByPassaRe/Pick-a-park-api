@@ -4,7 +4,7 @@
   "description": "API for the pick a park project",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "ts-node-dev src/app.ts",
+    "dev": "ts-node-dev src/index.ts",
     "test": "jest --config jest.config.json",
     "test:watch": "jest --config jest.config.json --watch",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"

@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-import { app } from './../../src/index';
+import { app } from '../../src/app';
 import { routeName } from './../../src/routes/parkingSpot';
 
 const resourcePath = routeName + '/';

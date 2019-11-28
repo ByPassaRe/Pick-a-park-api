@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-import { app } from './../src/index';
+import { app } from '../src/app';
 
 describe('Main route /', () => {
     it('should return message hello world', async done => {

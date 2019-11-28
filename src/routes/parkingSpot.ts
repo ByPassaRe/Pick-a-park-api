@@ -7,6 +7,22 @@ router.get('/', (req, res) => {
     return res.sendStatus(501);
 });
 
+router.get('/:id', (req, res) => {
+    return res.sendStatus(501);
+});
+
 router.post('/', (req, res) => {
+    return res.sendStatus(501);
+});
+
+router.get('/presence', (req, res) => {
+    return res.sendStatus(501);
+});
+
+router.get('/presence/:id', (req, res) => {
+    return res.sendStatus(501);
+});
+
+router.put('/presence/:id', (req, res) => {
     return res.sendStatus(501);
 });

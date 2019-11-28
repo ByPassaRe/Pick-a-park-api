@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "PickAPark",
   "version": "0.0.1",
-  "description": "sample desc",
+  "description": "API for the pick a park project",
   "main": "src/index.ts",
   "scripts": {
     "dev": "ts-node-dev src/index.ts",

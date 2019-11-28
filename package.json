@@ -5,8 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "ts-node-dev src/app.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --config jest.config.json",
+    "test:watch": "jest --config jest.config.json --watch",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "repository": {

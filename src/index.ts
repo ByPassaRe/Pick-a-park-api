@@ -1,15 +1,20 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import { createConnection } from 'typeorm';
 
 import { router as parkingSpotRouter, routeName as parkingSpotRouteName } from './routes/parkingSpot';
 
-export const app = express();
+createConnection()
+    .then(() => {
+        const app = express();
 
-app.use(bodyParser.json());
-app.use(parkingSpotRouteName, parkingSpotRouter);
+        app.use(bodyParser.json());
+        app.use(parkingSpotRouteName, parkingSpotRouter);
 
-app.get('/', (request, response) => {
-    response.send('Hello world!');
-});
+        app.get('/', (request, response) => {
+            response.send('Hello world!');
+        });
 
-app.listen(5000);
+        app.listen(5000);
+    })
+    .catch(error => console.log(error));

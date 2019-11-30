@@ -1,6 +1,7 @@
 import express from 'express';
-import { router as parkingSpotRouter, routeName as parkingSpotRouteName } from './routes/parkingSpot';
 import bodyParser from 'body-parser';
+
+import { router as parkingSpotRouter, routeName as parkingSpotRouteName } from './routes/parkingSpot';
 
 export const app = express();
 

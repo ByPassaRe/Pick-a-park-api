@@ -40,4 +40,4 @@ router.get('/:id/presence', async (req, res) => {
     else return res.send({ status: false });
 });
 
-router.put('/:id/presence', controller.getParkingSpotPresence);
+router.put('/:id/presence', controller.putParkingSpotPresence);

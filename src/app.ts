@@ -5,7 +5,6 @@ import { router as parkingSpotRouter, routeName as parkingSpotRouteName } from '
 
 export const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(parkingSpotRouteName, parkingSpotRouter);
 

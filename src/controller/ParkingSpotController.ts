@@ -44,13 +44,12 @@ export default class ParkingSpotController {
         }
     };
 
-    putParkingSpotPresence = async (req: Request, res: Response): Promise<Response | undefined> => {
+    putParkingSpotPresence = async (req: Request, res: Response): Promise<Response> => {
         const parkingSpotToUpdate = await getRepository(ParkingSpot).findOne(req.params.id);
         if (parkingSpotToUpdate === undefined) return res.sendStatus(404);
-        else {
-            parkingSpotToUpdate.status = !parkingSpotToUpdate.status;
-            getRepository(ParkingSpot).save(parkingSpotToUpdate);
-            res.send(parkingSpotToUpdate);
-        }
+
+        parkingSpotToUpdate.status = !parkingSpotToUpdate.status;
+        getRepository(ParkingSpot).save(parkingSpotToUpdate);
+        return res.send(parkingSpotToUpdate);
     };
 }

@@ -15,6 +15,13 @@ export default class ParkingSpotController {
         else return res.send(results);
     };
 
+    getAllParkingSpotsPresence = async (req: Request, res: Response): Promise<Response> => {
+        const parkingSpotsAvailable = await getRepository(ParkingSpot).find({
+            where: { status: true },
+        });
+        return res.send(parkingSpotsAvailable);
+    };
+
     getParkingSpotPresence = async (req: Request, res: Response): Promise<Response | undefined> => {
         const parkingSpotToUpdate = await getRepository(ParkingSpot).findOne(req.params.id);
         if (parkingSpotToUpdate === undefined) return res.sendStatus(404);

@@ -12,12 +12,7 @@ export const routeName = controller.path;
 
 router.get('/', controller.getAllParkingSpots);
 
-router.get('/presence', async (req, res) => {
-    const parkingSpotsAvailable = await getRepository(ParkingSpot).find({
-        where: { status: true },
-    });
-    return res.send(parkingSpotsAvailable);
-});
+router.get('/presence', controller.getAllParkingSpotsPresence);
 
 router.get('/:id', controller.getParkingSpot);
 

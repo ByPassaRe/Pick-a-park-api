@@ -19,11 +19,7 @@ router.get('/presence', async (req, res) => {
     return res.send(parkingSpotsAvailable);
 });
 
-router.get('/:id', async (req, res) => {
-    const results = await getRepository(ParkingSpot).findOne(req.params.id);
-    if (results === undefined) return res.sendStatus(404);
-    else return res.send(results);
-});
+router.get('/:id', controller.getParkingSpot);
 
 router.post('/', async (req, res) => {
     //Check if the parking spot already exists

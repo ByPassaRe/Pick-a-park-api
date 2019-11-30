@@ -10,9 +10,8 @@ export default class ParkingSpotController {
         res.send(await getRepository(ParkingSpot).find());
 
     getParkingSpot = async (req: Request, res: Response): Promise<Response> => {
-        const results = await getRepository(ParkingSpot).findOne(req.params.id);
-        if (results === undefined) return res.sendStatus(404);
-        else return res.send(results);
+        const parkingSpot = await getRepository(ParkingSpot).findOne(req.params.id);
+        return parkingSpot === undefined ? res.sendStatus(404) : res.send(parkingSpot);
     };
 
     getAllParkingSpotsPresence = async (req: Request, res: Response): Promise<Response> => {
@@ -24,9 +23,8 @@ export default class ParkingSpotController {
 
     getParkingSpotPresence = async (req: Request, res: Response): Promise<Response> => {
         const results = await getRepository(ParkingSpot).findOne(req.params.id);
-        if (results === undefined) return res.sendStatus(404);
-        else if (results.status) return res.send({ status: true });
-        else return res.send({ status: false });
+
+        return results === undefined ? res.sendStatus(404) : res.send({ status: results.status });
     };
 
     createParkingSpot = async (req: Request, res: Response): Promise<Response> => {

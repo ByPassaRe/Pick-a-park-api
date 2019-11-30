@@ -6,12 +6,12 @@ import { ParkingSpot } from '../entity/ParkingSpot';
 export default class ParkingSpotController {
     public path = '/parkingSpot';
 
-    getAllParkingSpots = async (_req: Request, res: Response): Promise<Response> => {
+    getParkingSpots = async (_req: Request, res: Response): Promise<Response> => {
         const parkingSpots = await getRepository(ParkingSpot).find();
         return res.send(parkingSpots);
     };
 
-    getParkingSpot = async (req: Request, res: Response): Promise<Response> => {
+    getParkingSpotById = async (req: Request, res: Response): Promise<Response> => {
         const parkingSpot = await getRepository(ParkingSpot).findOne(req.params.id);
         return parkingSpot === undefined ? res.sendStatus(404) : res.send(parkingSpot);
     };

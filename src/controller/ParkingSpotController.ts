@@ -6,7 +6,7 @@ import { ParkingSpot } from '../entity/ParkingSpot';
 export default class ParkingSpotController {
     public path = '/parkingSpot';
 
-    getAllParkingSpots = async (req: Request, res: Response): Promise<Response> => {
+    getAllParkingSpots = async (_req: Request, res: Response): Promise<Response> => {
         const parkingSpots = await getRepository(ParkingSpot).find();
         return res.send(parkingSpots);
     };
@@ -16,7 +16,7 @@ export default class ParkingSpotController {
         return parkingSpot === undefined ? res.sendStatus(404) : res.send(parkingSpot);
     };
 
-    getAllParkingSpotsPresence = async (req: Request, res: Response): Promise<Response> => {
+    getAllParkingSpotsPresence = async (_req: Request, res: Response): Promise<Response> => {
         const parkingSpotsAvailable = await getRepository(ParkingSpot).find({
             where: { status: true },
         });

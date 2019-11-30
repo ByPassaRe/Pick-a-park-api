@@ -12,4 +12,4 @@ router.get('/presence', controller.getAllParkingSpotsPresence);
 router.get('/:id', controller.getParkingSpot);
 router.post('/', controller.createParkingSpot);
 router.get('/:id/presence', controller.getParkingSpotPresence);
-router.put('/:id/presence', controller.putParkingSpotPresence);
+router.put('/:id/presence', controller.updateParkingSpotPresence);

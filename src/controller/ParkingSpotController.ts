@@ -46,7 +46,7 @@ export default class ParkingSpotController {
         }
     };
 
-    putParkingSpotPresence = async (req: Request, res: Response): Promise<Response> => {
+    updateParkingSpotPresence = async (req: Request, res: Response): Promise<Response> => {
         const parkingSpotToUpdate = await getRepository(ParkingSpot).findOne(req.params.id);
         if (parkingSpotToUpdate === undefined) return res.sendStatus(404);
 

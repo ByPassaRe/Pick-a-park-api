@@ -45,12 +45,4 @@ router.get('/:id/presence', async (req, res) => {
     else return res.send({ status: false });
 });
 
-router.put('/:id/presence', async (req, res) => {
-    const parkingSpotToUpdate = await getRepository(ParkingSpot).findOne(req.params.id);
-    if (parkingSpotToUpdate === undefined) return res.sendStatus(404);
-    else {
-        parkingSpotToUpdate.status = !parkingSpotToUpdate.status;
-        getRepository(ParkingSpot).save(parkingSpotToUpdate);
-        res.send(parkingSpotToUpdate);
-    }
-});
+router.put('/:id/presence', controller.getParkingSpotPresence);

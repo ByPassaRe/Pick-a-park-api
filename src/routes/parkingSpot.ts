@@ -1,6 +1,4 @@
 import express from 'express';
-import { getRepository } from 'typeorm';
-import { ParkingSpot } from '../entity/ParkingSpot';
 
 import ParkingSpotController from './../controller/ParkingSpotController';
 
@@ -16,22 +14,7 @@ router.get('/presence', controller.getAllParkingSpotsPresence);
 
 router.get('/:id', controller.getParkingSpot);
 
-router.post('/', async (req, res) => {
-    //Check if the parking spot already exists
-    const alreadyExistsParkingSpot = await getRepository(ParkingSpot).findOne({
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
-    });
-    if (alreadyExistsParkingSpot === undefined) {
-        //Save the parking spot
-        const parkingSpot = await getRepository(ParkingSpot).create(req.body);
-        const results = await getRepository(ParkingSpot).save(parkingSpot);
-        return res.send(results);
-    } else {
-        //Already exists a parking spot in this position (lat & lot is already in the parking)
-        return res.sendStatus(409);
-    }
-});
+router.post('/', controller.createParkingSpot);
 
 router.get('/:id/presence', controller.getParkingSpotPresence);
 

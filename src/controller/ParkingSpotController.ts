@@ -29,6 +29,23 @@ export default class ParkingSpotController {
         else return res.send({ status: false });
     };
 
+    createParkingSpot = async (req: Request, res: Response): Promise<Response> => {
+        //Check if the parking spot already exists
+        const alreadyExistsParkingSpot = await getRepository(ParkingSpot).findOne({
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+        });
+        if (alreadyExistsParkingSpot === undefined) {
+            //Save the parking spot
+            const parkingSpot = await getRepository(ParkingSpot).create(req.body);
+            const results = await getRepository(ParkingSpot).save(parkingSpot);
+            return res.send(results);
+        } else {
+            //Already exists a parking spot in this position (lat & lot is already in the parking)
+            return res.sendStatus(409);
+        }
+    };
+
     putParkingSpotPresence = async (req: Request, res: Response): Promise<Response | undefined> => {
         const parkingSpotToUpdate = await getRepository(ParkingSpot).findOne(req.params.id);
         if (parkingSpotToUpdate === undefined) return res.sendStatus(404);

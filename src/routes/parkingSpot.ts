@@ -2,12 +2,15 @@ import express from 'express';
 import { getRepository } from 'typeorm';
 import { ParkingSpot } from '../entity/ParkingSpot';
 
-export const router = express.Router();
-export const routeName = '/parkingSpot';
+import ParkingSpotController from './../controller/ParkingSpotController';
 
-router.get('/', async (req, res) => {
-    return res.send(await getRepository(ParkingSpot).find());
-});
+export const router = express.Router();
+
+const controller = new ParkingSpotController();
+
+export const routeName = controller.path;
+
+router.get('/', controller.getAllParkingSpots);
 
 router.get('/presence', async (req, res) => {
     const parkingSpotsAvailable = await getRepository(ParkingSpot).find({

@@ -33,11 +33,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/:id/presence', async (req, res) => {
-    const results = await getRepository(ParkingSpot).findOne(req.params.id);
-    if (results === undefined) return res.sendStatus(404);
-    else if (results.status) return res.send({ status: true });
-    else return res.send({ status: false });
-});
+router.get('/:id/presence', controller.getParkingSpotPresence);
 
 router.put('/:id/presence', controller.putParkingSpotPresence);

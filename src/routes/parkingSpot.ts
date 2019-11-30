@@ -1,5 +1,5 @@
 import express from 'express';
-import { createConnection } from 'typeorm';
+import { createConnection, getRepository } from 'typeorm';
 import { ParkingSpot } from '../entity/ParkingSpot';
 
 export const router = express.Router();
@@ -7,8 +7,8 @@ export const routeName = '/parkingSpot';
 
 // create typeorm connection
 createConnection()
-    .then(async connection => {
-        const parkingSpotRepository = connection.getRepository(ParkingSpot);
+    .then(async () => {
+        const parkingSpotRepository = getRepository(ParkingSpot);
 
         router.get('/', async (req, res) => {
             return res.send(await parkingSpotRepository.find());

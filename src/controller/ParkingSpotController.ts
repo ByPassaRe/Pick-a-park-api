@@ -1,26 +1,26 @@
 import { Request, Response } from 'express';
-
 import { getRepository } from 'typeorm';
+import { boolean } from 'boolean';
+
 import { ParkingSpot } from '../entity/ParkingSpot';
 
 export default class ParkingSpotController {
     public path = '/parkingSpot';
 
-    getParkingSpots = async (_req: Request, res: Response): Promise<Response> => {
-        const parkingSpots = await getRepository(ParkingSpot).find();
+    getParkingSpots = async (req: Request, res: Response): Promise<Response> => {
+        let query = {};
+
+        if (req.query.presence) {
+            query = { where: { status: boolean(req.query.presence) } };
+        }
+
+        const parkingSpots = await getRepository(ParkingSpot).find(query);
         return res.send(parkingSpots);
     };
 
     getParkingSpotById = async (req: Request, res: Response): Promise<Response> => {
         const parkingSpot = await getRepository(ParkingSpot).findOne(req.params.id);
         return parkingSpot === undefined ? res.sendStatus(404) : res.send(parkingSpot);
-    };
-
-    getAllParkingSpotsPresence = async (_req: Request, res: Response): Promise<Response> => {
-        const parkingSpotsAvailable = await getRepository(ParkingSpot).find({
-            where: { status: true },
-        });
-        return res.send(parkingSpotsAvailable);
     };
 
     getParkingSpotPresence = async (req: Request, res: Response): Promise<Response> => {

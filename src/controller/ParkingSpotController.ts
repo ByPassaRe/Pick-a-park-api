@@ -5,7 +5,7 @@ import { boolean } from 'boolean';
 import { ParkingSpot } from '../entity/ParkingSpot';
 
 export default class ParkingSpotController {
-    public path = '/parkingSpot';
+    public path = '/parkingSpots';
 
     getParkingSpots = async (req: Request, res: Response): Promise<Response> => {
         let query = {};

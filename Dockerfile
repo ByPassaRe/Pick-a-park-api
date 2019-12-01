@@ -17,6 +17,7 @@ EXPOSE $PORT
 RUN npm i npm@latest -g
 
 # Install ts-node to run app
+RUN npm i typescript -g
 RUN npm i ts-node -g
 
 # install dependencies first, in a different location for easier app bind mounting for local development

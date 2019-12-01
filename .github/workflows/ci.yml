@@ -5,10 +5,11 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
+        os: [ubuntu-latest, ubuntu-16.04, ubuntu-18.04]
         node-version: [8.x, 10.x, 12.x]
 
     steps:
@@ -20,7 +21,9 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm ci
+        npm audit
         npm run build --if-present
         npm test
+        npm run lint
       env:
         CI: 'true'

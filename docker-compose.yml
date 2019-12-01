@@ -1,0 +1,54 @@
+version: '3'
+services:
+
+  api:
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
+    command: ts-node-dev --respawn --transpileOnly ./src/index.ts
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/opt/node_app/app:delegated
+      # bind-mounting these two files in will let you add packages during development without rebuilding
+      # for example, to add bower to your app while developing, just install it inside the container
+      # and then nodemon will restart. Your changes will last until you "docker-compose down" and will
+      # be saved on host for next build
+      # NOTE: this won't work on Docker Toolbox (virtualbox) which doesn't bind-mount single files
+      # docker-compose exec api npm install --save bower
+      - ./package.json:/opt/node_app/package.json
+      - ./package-lock.json:/opt/node_app/package-lock.json
+      # this is a workaround to prevent host node_modules from accidently getting mounted in container
+      # in case you want to use node/npm both outside container for test/lint etc. and also inside container
+      # this will overwrite the default node_modules dir in container so it won't conflict with our
+      # /opt/node_app/node_modules location. Thanks to PR from @brnluiz
+      - notused:/opt/node_app/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - TYPEORM_CONNECTION=mysql
+      - TYPEORM_HOST=db
+      - TYPEORM_USERNAME=test
+      - TYPEORM_PASSWORD=test
+      - TYPEORM_DATABASE=test
+      - TYPEORM_PORT=3306
+      - TYPEORM_SYNCHRONIZE=true
+      - TYPEORM_LOGGING=false
+      - TYPEORM_ENTITIES=src/entity/**/*.ts
+      - TYPEORM_MIGRATIONS=src/migration/**/*.ts
+      - TYPEORM_SUBSCRIBERS=src/subscriber/**/*.ts
+    depends_on:
+      - db
+
+  db:
+    image: "mysql:5.7"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "admin"
+      MYSQL_USER: "test"
+      MYSQL_PASSWORD: "test"
+      MYSQL_DATABASE: "test"
+
+volumes:
+  notused:

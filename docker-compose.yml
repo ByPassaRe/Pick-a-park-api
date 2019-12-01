@@ -6,12 +6,7 @@ services:
       context: .
       args:
         - NODE_ENV=development
-    # you can use legacy debug config or new inspect
-    # NOTE: if nodemon isn't restarting on changes, you might be on Windows
-    # which has trouble seeing file changes, so add -L to use legacy polling
-    # https://github.com/remy/nodemon#application-isnt-restarting
-    #command: ../node_modules/.bin/nodemon --debug=0.0.0.0:5858
-    command: ../node_modules/.bin/ts-node-dev --respawn --transpileOnly ./src/index.ts
+    command: ts-node-dev --respawn --transpileOnly ./src/index.ts
     ports:
       - "3000:3000"
     volumes:
@@ -31,6 +26,17 @@ services:
       - notused:/opt/node_app/app/node_modules
     environment:
       - NODE_ENV=development
+      - TYPEORM_CONNECTION=mysql
+      - TYPEORM_HOST=db
+      - TYPEORM_USERNAME=test
+      - TYPEORM_PASSWORD=test
+      - TYPEORM_DATABASE=test
+      - TYPEORM_PORT=3306
+      - TYPEORM_SYNCHRONIZE=true
+      - TYPEORM_LOGGING=false
+      - TYPEORM_ENTITIES=src/entity/**/*.ts
+      - TYPEORM_MIGRATIONS=src/migration/**/*.ts
+      - TYPEORM_SUBSCRIBERS=src/subscriber/**/*.ts
     depends_on:
       - db
 
@@ -38,8 +44,6 @@ services:
     image: "mysql:5.7"
     ports:
       - "3306:3306"
-    expose: 
-      - "3306"
     environment:
       MYSQL_ROOT_PASSWORD: "admin"
       MYSQL_USER: "test"

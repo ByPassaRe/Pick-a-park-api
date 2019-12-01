@@ -17,14 +17,13 @@ const connectDb = async (): Promise<boolean> => {
     while (retries < maxRetries) {
         try {
             await createConnection();
-            console.log('Connected to database');
+            console.log('Succesfully connected to database');
             return true;
         } catch (error) {
-            console.log(error);
+            console.log('Waiting for database.....');
 
             await waitRetry(5000);
             retries++;
-            console.log('Retrying to connect to database......... n ' + retries);
         }
     }
 
@@ -32,15 +31,17 @@ const connectDb = async (): Promise<boolean> => {
 };
 
 const startServer = async (): Promise<void> => {
+    const port = process.env.PORT;
+
     if (await connectDb()) {
         const app = express();
 
         app.use(bodyParser.json());
         app.use(parkingSpotRouteName, parkingSpotRouter);
 
-        app.listen(3000);
+        app.listen(port);
 
-        console.log('App listening on port 3000');
+        console.log('App listening on port ' + port);
     } else {
         console.log("Couldn't connect to database");
     }

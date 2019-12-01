@@ -4,6 +4,8 @@
  
 API backend for Pick-a-park project
 
+![](https://github.com/ByPassaRe/Pick-a-park-api/workflows/Node%20CI/badge.svg)
+
 ## VSCode autofix using ESlint and Prettier
 
 To make VsCode autofix your code using prettier and Eslint add this to the general settings.json file (search using Ctrl+Shift+p)

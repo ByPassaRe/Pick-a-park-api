@@ -1,8 +1,10 @@
 <p align="center">
   <img src="/assets/images/logo.png" alt="Pick-A-Park"/>
 </p>
- 
-API backend for Pick-a-park project
+
+![](https://github.com/ByPassaRe/Pick-a-park-api/workflows/Node%20CI/badge.svg)
+![](https://github.com/ByPassaRe/Pick-a-park-api/workflows/Security/badge.svg)
+![](https://github.com/ByPassaRe/Pick-a-park-api/workflows/Development%20container/badge.svg)
 
 ## VSCode autofix using ESlint and Prettier
 

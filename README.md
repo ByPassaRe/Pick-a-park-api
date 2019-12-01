@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/logo.png" alt="Pick-A-Park"/>
+  <img src="/assets/images/logo.png" alt="Pick-A-Park"/>
 </p>
  
 API backend for Pick-a-park project

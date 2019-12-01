@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { connectDb, createApp, startServer } from './../src/app';
 
 describe('Main index file', () => {

@@ -1,7 +1,10 @@
-# Pick-a-park-api
+<p align="center">
+  <img src="/logo.png" alt="Pick-A-Park"/>
+</p>
+ 
 API backend for Pick-a-park project
 
-# VSCode autofix using ESlint and Prettier
+## VSCode autofix using ESlint and Prettier
 
 To make VsCode autofix your code using prettier and Eslint add this to the general settings.json file (search using Ctrl+Shift+p)
 

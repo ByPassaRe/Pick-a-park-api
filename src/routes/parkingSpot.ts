@@ -10,5 +10,6 @@ export const routeName = controller.path;
 router.get('/', controller.getParkingSpots);
 router.get('/:id', controller.getParkingSpotById);
 router.post('/', controller.createParkingSpot);
+router.delete('/:id', controller.deleteParkingSpot);
 router.get('/:id/presence', controller.getParkingSpotPresence);
 router.put('/:id/presence', controller.updateParkingSpotPresence);

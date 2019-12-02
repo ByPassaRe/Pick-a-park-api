@@ -54,4 +54,12 @@ export default class ParkingSpotController {
         getRepository(ParkingSpot).save(parkingSpotToUpdate);
         return res.send(parkingSpotToUpdate);
     };
+
+    deleteParkingSpot = async (req: Request, res: Response): Promise<Response> => {
+        const parkingSpotToDelete = await getRepository(ParkingSpot).findOne(req.params.id);
+        if (parkingSpotToDelete === undefined) return res.sendStatus(404);
+
+        getRepository(ParkingSpot).remove(parkingSpotToDelete);
+        return res.send(parkingSpotToDelete);
+    };
 }

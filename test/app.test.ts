@@ -1,4 +1,4 @@
-import * as app from './../src/app';
+import * as app from '../src/app';
 import sinon from 'sinon';
 import { expect } from 'chai';
 

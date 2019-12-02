@@ -8,6 +8,7 @@
     "prod": "ts-node --transpile-only src/index.ts",
     "test": "mocha -r ts-node/register test/**/*.test.ts",
     "coverage": "nyc npm run test",
+    "coverage:html": "nyc --reporter=html npm run test",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "repository": {

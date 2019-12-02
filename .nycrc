@@ -9,6 +9,7 @@
     "**/*.ts"
   ],
   "exclude": [
+    "src/index.ts",
     "coverage/**",
     "node_modules/**",
     "**/*.d.ts",
@@ -21,5 +22,6 @@
     "text-summary"
   ],
   "all": true,
-  "instrument": true
+  "instrument": true,
+  "require": ["ts-node/register"]
 }

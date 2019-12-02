@@ -21,7 +21,6 @@ jobs:
     - name: npm install, lint and test
       run: |
         npm ci
-        npm audit
         npm run lint
         npm test
       env:

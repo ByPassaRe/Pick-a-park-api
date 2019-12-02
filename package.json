@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpileOnly src/index.ts",
     "prod": "ts-node --transpile-only src/index.ts",
-    "test": "jest --config jest.config.json",
-    "test:watch": "jest --config jest.config.json --watch",
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "repository": {

@@ -1,25 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-import { connectDb, createApp, startServer } from './../src/app';
+import * as app from './../src/app';
+import sinon from 'sinon';
+import { expect } from 'chai';
 
-describe('Main index file', () => {
+const connectDbStub = sinon.stub(app, 'connectDb');
+const createAppStub = sinon.stub(app, 'createApp');
+
+describe('app index file', () => {
+    beforeEach(() => {
+        sinon.reset();
+    });
+
     it('should not run app if database fails to connect', async () => {
-        // @ts-ignore
-        connectDb = jest.fn(() => false);
-        // @ts-ignore
-        createApp = jest.fn();
-
-        await startServer();
-        expect(createApp).toBeCalledTimes(0);
+        connectDbStub.callsFake(async () => false);
+        await app.startServer();
+        expect(createAppStub.callCount).to.equal(0);
     });
 
     it('should run app if database succeded to connect', async () => {
-        // @ts-ignore
-        connectDb = jest.fn(() => true);
-        // @ts-ignore
-        createApp = jest.fn();
-
-        await startServer();
-        expect(createApp).toBeCalledTimes(1);
+        connectDbStub.callsFake(async () => true);
+        await app.startServer();
+        expect(createAppStub.callCount).to.equal(1);
     });
 });
